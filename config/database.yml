@@ -1,0 +1,22 @@
+
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  host: db
+  username: postgres
+  password: password
+
+development:
+  <<: *default
+  database: nostalgia_connect_development
+
+test:
+  <<: *default
+  database: nostalgia_connect_test
+
+production:
+  <<: *default
+  database: nostalgia_connect_production
+  username: nostalgia_connect
+  password: <%= ENV["NOSTALGIA_CONNECT_DATABASE_PASSWORD"] %>
